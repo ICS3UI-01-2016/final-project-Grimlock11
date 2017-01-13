@@ -1,6 +1,11 @@
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -13,7 +18,7 @@ import javax.swing.JFrame;
 public class FinalProject_FeazanAyyaz extends JComponent{
 
     // Height and Width of our game
-    static final int WIDTH = 800;
+    static final int WIDTH = 1050;
     static final int HEIGHT = 600;
     
     // sets the framerate and delay for our game
@@ -21,7 +26,14 @@ public class FinalProject_FeazanAyyaz extends JComponent{
     long desiredFPS = 60;
     long desiredTime = (1000)/desiredFPS;
     
-
+    // game variables
+    Color skyColor = new Color(30, 170, 217);
+    Rectangle maledino = new Rectangle(100, 425, 50, 100);
+    
+    BufferedImage maledinopic = loadImage("maledino.jpg");
+    BufferedImage backround = loadImage("backround.jpg");
+    
+    
     
     // drawing of the game happens in here
     // we use the Graphics object, g, to perform the drawing
@@ -34,10 +46,34 @@ public class FinalProject_FeazanAyyaz extends JComponent{
         
         // GAME DRAWING GOES HERE 
         
+        // change the sky color
+        g.setColor(skyColor);
+        // draw the sky backround
+        //g.fillRect(0, 0, WIDTH, HEIGHT);
+        g.drawImage(backround, 0, 0, WIDTH, HEIGHT, null);
+        
+        // draw the male dinosaur (main character)
+        g.setColor(Color.YELLOW);
+        //g.fillRect(bird.x, bird.y, bird.width, bird.height);
+        g.drawImage(maledinopic, maledino.x, maledino.y, maledino.width, maledino.height, null);
+        
         
         // GAME DRAWING ENDS HERE
     }
-    
+   
+    public BufferedImage loadImage(String filename){
+        BufferedImage img = null;
+        try{
+            File file = new File(filename);
+            img = ImageIO.read(file);
+            // if there is an error print image
+        }catch(Exception e ){
+             
+            
+            e.printStackTrace();
+        }
+       return img;
+    }
     
     // The main game loop
     // In here is where all the logic for my game will go
