@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -15,7 +17,7 @@ import javax.swing.JFrame;
  */
 
 
-public class FinalProject_FeazanAyyaz extends JComponent{
+public class FinalProject_FeazanAyyaz extends JComponent implements KeyListener{
 
     // Height and Width of our game
     static final int WIDTH = 1050;
@@ -28,12 +30,19 @@ public class FinalProject_FeazanAyyaz extends JComponent{
     
     // game variables
     Color skyColor = new Color(30, 170, 217);
-    Rectangle maledino = new Rectangle(100, 425, 50, 100);
+    Rectangle dino1 = new Rectangle(100, 425, 50, 100);
+    Rectangle dino2 = new Rectangle(100, 425, 250, 100);
     
     BufferedImage maledinopic = loadImage("maledino.jpg");
     BufferedImage backround = loadImage("backround.jpg");
     
-    
+    boolean save1 = false;
+    boolean save2 = false;
+    boolean block1 = false;
+    boolean block2 = false;
+    boolean attack1 = false;
+    boolean attack2 = false;
+    boolean start = false;
     
     // drawing of the game happens in here
     // we use the Graphics object, g, to perform the drawing
@@ -55,7 +64,7 @@ public class FinalProject_FeazanAyyaz extends JComponent{
         // draw the male dinosaur (main character)
         g.setColor(Color.YELLOW);
         //g.fillRect(bird.x, bird.y, bird.width, bird.height);
-        g.drawImage(maledinopic, maledino.x, maledino.y, maledino.width, maledino.height, null);
+        g.drawImage(maledinopic, dino1.x, dino1.y, dino1.width, dino1.height, null);
         
         
         // GAME DRAWING ENDS HERE
@@ -134,7 +143,8 @@ public class FinalProject_FeazanAyyaz extends JComponent{
         game.setPreferredSize(new Dimension(WIDTH,HEIGHT));
         // adds the game to the window
         frame.add(game);
-         
+        // add key listener
+        frame.addKeyListener(game);
         // sets some options and size of the window automatically
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -145,4 +155,61 @@ public class FinalProject_FeazanAyyaz extends JComponent{
         // starts my game loop
         game.run();
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getExtendedKeyCode();
+        if (key == KeyEvent.VK_A) {
+            save1 = true;
+            start = true;
+        }
+        if (key == KeyEvent.VK_S) {
+            block1 = true;
+            start = true;
+        }
+        if (key == KeyEvent.VK_D) {
+            attack1 = true;
+            start = true;
+        }
+        if (key == KeyEvent.VK_J) {
+            save1 = true;
+            start = true;
+        }
+        if (key == KeyEvent.VK_K) {
+            block1 = true;
+            start = true;
+        }
+        if (key == KeyEvent.VK_L) {
+            attack1 = true;
+            start = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getExtendedKeyCode();
+        if (key == KeyEvent.VK_A) {
+            save1 = false;
+        }
+        if (key == KeyEvent.VK_S) {
+            block1 = false;
+        }
+        if (key == KeyEvent.VK_D) {
+            attack1 = false;
+        }
+        if (key == KeyEvent.VK_J) {
+            save2 = false;
+        }
+        if (key == KeyEvent.VK_K) {
+            block2 = false;
+        }
+        if (key == KeyEvent.VK_L) {
+            attack2 = false;
+        }
+    }
+
 }
