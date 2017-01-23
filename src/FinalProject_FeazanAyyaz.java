@@ -30,18 +30,19 @@ public class FinalProject_FeazanAyyaz extends JComponent implements KeyListener{
     
     // game variables
     Color skyColor = new Color(30, 170, 217);
-    Rectangle dino1 = new Rectangle(100, 425, 50, 100);
-    Rectangle dino2 = new Rectangle(100, 425, 250, 100);
+    Rectangle dino1 = new Rectangle(60, 440, 250, 100);
+    Rectangle dino2 = new Rectangle(750, 450, 250, 100);
+   
+    BufferedImage backround = loadImage("city.jpg");
+    BufferedImage dinoone = loadImage("ank.png");
+    BufferedImage dinotwo = loadImage("Gorgosaurus2.png");
     
-    BufferedImage maledinopic = loadImage("maledino.jpg");
-    BufferedImage backround = loadImage("backround.jpg");
-    
-    boolean save1 = false;
-    boolean save2 = false;
-    boolean block1 = false;
-    boolean block2 = false;
-    boolean attack1 = false;
-    boolean attack2 = false;
+    boolean left1 = false;
+    boolean jump1 = false;
+    boolean right1 = false;
+    boolean left2 = false;
+    boolean jump2 = false;
+    boolean right2 = false;
     boolean start = false;
     
     // drawing of the game happens in here
@@ -64,7 +65,11 @@ public class FinalProject_FeazanAyyaz extends JComponent implements KeyListener{
         // draw the male dinosaur (main character)
         g.setColor(Color.YELLOW);
         //g.fillRect(bird.x, bird.y, bird.width, bird.height);
-        g.drawImage(maledinopic, dino1.x, dino1.y, dino1.width, dino1.height, null);
+        g.drawImage(dinoone, dino1.x, dino1.y, dino1.width, dino1.height, null);
+        
+        g.setColor(Color.YELLOW);
+        //g.fillRect(bird.x, bird.y, bird.width, bird.height);
+        g.drawImage(dinotwo, dino2.x, dino2.y, dino2.width, dino2.height, null);
         
         
         // GAME DRAWING ENDS HERE
@@ -164,27 +169,27 @@ public class FinalProject_FeazanAyyaz extends JComponent implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int key = e.getExtendedKeyCode();
         if (key == KeyEvent.VK_A) {
-            save1 = true;
+            left1 = true;
             start = true;
         }
         if (key == KeyEvent.VK_S) {
-            block1 = true;
+            jump1 = true;
             start = true;
         }
         if (key == KeyEvent.VK_D) {
-            attack1 = true;
+            right1 = true;
             start = true;
         }
         if (key == KeyEvent.VK_J) {
-            save1 = true;
+            left2 = true;
             start = true;
         }
         if (key == KeyEvent.VK_K) {
-            block1 = true;
+            jump2 = true;
             start = true;
         }
         if (key == KeyEvent.VK_L) {
-            attack1 = true;
+            right2 = true;
             start = true;
         }
     }
@@ -193,23 +198,22 @@ public class FinalProject_FeazanAyyaz extends JComponent implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int key = e.getExtendedKeyCode();
         if (key == KeyEvent.VK_A) {
-            save1 = false;
+            left1 = false;
         }
         if (key == KeyEvent.VK_S) {
-            block1 = false;
+            jump1 = false;
         }
         if (key == KeyEvent.VK_D) {
-            attack1 = false;
+            right1 = false;
         }
         if (key == KeyEvent.VK_J) {
-            save2 = false;
+            left2 = false;
         }
         if (key == KeyEvent.VK_K) {
-            block2 = false;
+            jump2 = false;
         }
         if (key == KeyEvent.VK_L) {
-            attack2 = false;
+            right2 = false;
         }
     }
-
 }
